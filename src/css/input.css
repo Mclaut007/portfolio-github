@@ -1,0 +1,125 @@
+/* @font-face {
+  font-family: "Europa";
+  src:
+    url("./../fonts/europa.woff2") format("woff2"),
+    url("./../fonts/europa.woff") format("woff");
+}
+@font-face {
+  font-family: "Gloss-And-Bloom";
+  src:
+    url("./../fonts/gloss-and-bloom.woff2") format("woff2"),
+    url("./../fonts/gloss-and-bloom.woff") format("woff");
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    /* Устанавливаем самые распространенные семейство шрифта, цвет и т.д. */
+    /* font-family: "Roboto", sans-serif; */
+    /* color: #3f3232; */
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  h1 {
+    @apply mb-4 text-3xl font-bold leading-tight text-red-700;
+  }
+  h2 {
+    /* font-size: 3rem; */
+    /* @apply sm:text-4xl md:text-[2.5rem] lg:text-[2.75rem]; */
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    overflow: hidden;
+  }
+  .container {
+    /* max-width: 75rem;  */
+    /* 1200px */
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
+  .main {
+    flex-grow: 1;
+  }
+
+  /* Сделаем другие стили для кнопки. Оказывается, flex не нужен. Нужно просто поменять display на block (по умолчанию inline-block). Тогда между кнопкой и другими элементами не будет зазоров и кнопку можно будет центрировать по горизонтали с помощью margin: 0 auto; Не нужно, как в случае c display: flex; писать width: fit-content, justify-content: center; align-items: center; text-align: center. У элемента button даже если ему сделать display: block ширина все равно задается содержимым (а не 100% она будет), а содержимое кнопки по горизонтали и вертикали выравнивается по центру. И text-align: center тут автоматически. */
+
+  .button {
+    /* Поменять значения свойств на те, что по дизайн-макету */
+    font-size: 1rem;
+    min-height: 3rem;
+    padding: 1rem 2rem;
+    border: 1px solid red;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    background: red;
+    color: #fff;
+    display: block;
+    /* Строки для display flex ниже не используем. 
+    Мы заменили flex на block */
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content; */
+    user-select: none;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  @media (any-hover: hover) and (pointer: fine) {
+    .button:hover {
+      background-color: transparent;
+      color: red;
+    }
+  }
+
+  /* .button переименуем в button-flex. Не будем пока удалять. */
+  .button-flex {
+    /* Поменять значения свойств на те, что по дизайн-макету */
+    font-size: 1rem;
+    min-height: 3rem;
+    padding: 1rem 2rem;
+    border: 1px solid red;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    background: red;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    text-align: center;
+    user-select: none;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  @media (any-hover: hover) and (pointer: fine) {
+    .button-flex:hover {
+      background-color: transparent;
+      color: red;
+    }
+  }
+}
+
+body._lock {
+  overflow: hidden;
+}
+
+._menu-open {
+  transform: translateX(0);
+}
